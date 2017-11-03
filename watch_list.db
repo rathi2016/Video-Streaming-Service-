@@ -1,0 +1,38 @@
+
+sqlite> CREATE TABLE streamed (
+   ...> id INTEGERS PRIMARY KEY,
+   ...> user_id INTEGERS,
+   ...> video_id INTEGERS);
+
+sqlite> INSERT INTO streamed (user_id,video_id) VALUES (1,1);
+sqlite> INSERT INTO streamed (user_id,video_id) VALUES (1,2);
+sqlite> INSERT INTO streamed (user_id,video_id) VALUES (1,1);
+sqlite> INSERT INTO streamed (user_id,video_id) VALUES (2,1);
+
+OUTPUT
+sqlite> SELECT * FROM streamed
+   ...> ;
+|1|1
+|1|2
+|1|1
+|2|1
+
+sqlite> SELECT user_id, video_id,
+   ...> COUNT(*) As CountOf
+   ...> FROM streamed
+   ...> GROUP BY user_id,video_id
+   ...> HAVING COUNT(*) >= 1
+   ...> ;
+
+   OUTPUT
+   1|1|2
+   1|2|1
+   2|1|1
+
+   sqlite> SELECT user_id, video_id,
+   ...> COUNT(*) As CountOf
+   ...> FROM streamed
+   ...> GROUP BY user_id,video_id
+   ...> HAVING COUNT(*) >= 1
+   ...>  LIMIT 20
+   ...> ;
