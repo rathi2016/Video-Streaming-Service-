@@ -9,7 +9,8 @@
 # A single invoice may look like this {invoice_id: 101, user_id: 1, amount_due: 0, hrs_video_viewed: 35, subscription_status: "past due"}
 # A single subscriber may look like this {user_id: 1, firstname: "John", lastname: "Snow", email: "john.snow@example.com", subscription_tier: 2, creditcardnbr:*******345, street: "111", city: "NYC", zip: "11520", phone: "9135356089" }
 # code is in Ruby.
-require 'pry'
+
+
 class Notification
 
   def initialize(invoices,subscribers)
